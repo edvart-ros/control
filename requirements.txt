@@ -2,3 +2,4 @@ numpy
 scipy
 do-mpc
 matplotlib
+#acados, see acados python interface documentation for installation
