@@ -31,39 +31,18 @@
  * POSSIBILITY OF SUCH DAMAGE.;
  */
 
-#ifndef vessel_ode_MODEL
-#define vessel_ode_MODEL
+#ifndef vessel_ode_CONSTRAINTS
+#define vessel_ode_CONSTRAINTS
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 
-/* explicit ODE */
 
-// explicit ODE
-int vessel_ode_expl_ode_fun(const real_t** arg, real_t** res, int* iw, real_t* w, void *mem);
-int vessel_ode_expl_ode_fun_work(int *, int *, int *, int *);
-const int *vessel_ode_expl_ode_fun_sparsity_in(int);
-const int *vessel_ode_expl_ode_fun_sparsity_out(int);
-int vessel_ode_expl_ode_fun_n_in(void);
-int vessel_ode_expl_ode_fun_n_out(void);
 
-// explicit forward VDE
-int vessel_ode_expl_vde_forw(const real_t** arg, real_t** res, int* iw, real_t* w, void *mem);
-int vessel_ode_expl_vde_forw_work(int *, int *, int *, int *);
-const int *vessel_ode_expl_vde_forw_sparsity_in(int);
-const int *vessel_ode_expl_vde_forw_sparsity_out(int);
-int vessel_ode_expl_vde_forw_n_in(void);
-int vessel_ode_expl_vde_forw_n_out(void);
 
-// explicit adjoint VDE
-int vessel_ode_expl_vde_adj(const real_t** arg, real_t** res, int* iw, real_t* w, void *mem);
-int vessel_ode_expl_vde_adj_work(int *, int *, int *, int *);
-const int *vessel_ode_expl_vde_adj_sparsity_in(int);
-const int *vessel_ode_expl_vde_adj_sparsity_out(int);
-int vessel_ode_expl_vde_adj_n_in(void);
-int vessel_ode_expl_vde_adj_n_out(void);
+
 
 
 
@@ -71,4 +50,4 @@ int vessel_ode_expl_vde_adj_n_out(void);
 } /* extern "C" */
 #endif
 
-#endif  // vessel_ode_MODEL
+#endif  // vessel_ode_CONSTRAINTS

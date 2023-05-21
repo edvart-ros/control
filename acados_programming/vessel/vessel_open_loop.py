@@ -9,6 +9,7 @@ import numpy as np
 from utils import plot_vessel
 import time
 
+
 def main():
     sim = AcadosSim()
     model = export_vessel_mpc_model()

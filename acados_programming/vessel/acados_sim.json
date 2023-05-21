@@ -65,7 +65,7 @@
         "Tsim": 0.01,
         "collocation_type": "GAUSS_RADAU_IIA",
         "ext_fun_compile_flags": "-O2",
-        "integrator_type": "IRK",
+        "integrator_type": "ERK",
         "output_z": true,
         "sens_adj": false,
         "sens_algebraic": false,
