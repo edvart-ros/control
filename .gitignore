@@ -50,3 +50,12 @@ coverage.xml
 
 # Sphinx documentation
 docs/_build/
+
+# ignore all .pyc files in all directories
+*/*.pyc
+
+# ignore all files in the "c_generated_code" directory
+vessel/c_generated_code/*
+
+# ignore all json files
+*.json
