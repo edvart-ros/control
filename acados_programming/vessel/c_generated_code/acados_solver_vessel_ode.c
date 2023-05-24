@@ -386,26 +386,26 @@ void vessel_ode_acados_create_5_set_nlp_in(vessel_ode_solver_capsule* capsule, c
     free(yref_e);
    double* W_0 = calloc(NY0*NY0, sizeof(double));
     // change only the non-zero elements:
-    W_0[0+(NY0) * 0] = 1000000;
-    W_0[1+(NY0) * 1] = 1000000;
-    W_0[3+(NY0) * 3] = 100000;
-    W_0[4+(NY0) * 4] = 100000;
-    W_0[5+(NY0) * 5] = 100000;
-    W_0[6+(NY0) * 6] = 0.01;
-    W_0[7+(NY0) * 7] = 1000;
-    W_0[8+(NY0) * 8] = 0.01;
+    W_0[0+(NY0) * 0] = 100;
+    W_0[1+(NY0) * 1] = 100;
+    W_0[3+(NY0) * 3] = 10;
+    W_0[4+(NY0) * 4] = 10;
+    W_0[5+(NY0) * 5] = 10;
+    W_0[6+(NY0) * 6] = 0.000001;
+    W_0[7+(NY0) * 7] = 0.1;
+    W_0[8+(NY0) * 8] = 0.000001;
     ocp_nlp_cost_model_set(nlp_config, nlp_dims, nlp_in, 0, "W", W_0);
     free(W_0);
     double* W = calloc(NY*NY, sizeof(double));
     // change only the non-zero elements:
-    W[0+(NY) * 0] = 1000000;
-    W[1+(NY) * 1] = 1000000;
-    W[3+(NY) * 3] = 100000;
-    W[4+(NY) * 4] = 100000;
-    W[5+(NY) * 5] = 100000;
-    W[6+(NY) * 6] = 0.01;
-    W[7+(NY) * 7] = 1000;
-    W[8+(NY) * 8] = 0.01;
+    W[0+(NY) * 0] = 100;
+    W[1+(NY) * 1] = 100;
+    W[3+(NY) * 3] = 10;
+    W[4+(NY) * 4] = 10;
+    W[5+(NY) * 5] = 10;
+    W[6+(NY) * 6] = 0.000001;
+    W[7+(NY) * 7] = 0.1;
+    W[8+(NY) * 8] = 0.000001;
 
     for (int i = 1; i < N; i++)
     {
@@ -414,11 +414,11 @@ void vessel_ode_acados_create_5_set_nlp_in(vessel_ode_solver_capsule* capsule, c
     free(W);
     double* W_e = calloc(NYN*NYN, sizeof(double));
     // change only the non-zero elements:
-    W_e[0+(NYN) * 0] = 100000;
-    W_e[1+(NYN) * 1] = 100000;
-    W_e[3+(NYN) * 3] = 10000;
-    W_e[4+(NYN) * 4] = 10000;
-    W_e[5+(NYN) * 5] = 10000;
+    W_e[0+(NYN) * 0] = 10;
+    W_e[1+(NYN) * 1] = 10;
+    W_e[3+(NYN) * 3] = 1;
+    W_e[4+(NYN) * 4] = 1;
+    W_e[5+(NYN) * 5] = 1;
     ocp_nlp_cost_model_set(nlp_config, nlp_dims, nlp_in, N, "W", W_e);
     free(W_e);
     double* Vx_0 = calloc(NY0*NX, sizeof(double));

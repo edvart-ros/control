@@ -41,16 +41,18 @@ def main():
 
     # Cost function weights
     # states 
-    Qx, Qy, Qpsi, Qu, Qv, Qr = 10, 10, 0, 1, 1, 1
+    Qx, Qy, Qpsi, Qu, Qv, Qr = 100, 100, 0, 10, 10, 10
     Q = np.diag([Qx, Qy, Qpsi, Qu,Qv, Qr])
     # control inputs
-    R_u, R_v, R_r = 1e-7, 1e-2, 1e-7
+    R_u, R_v, R_r = 1e-6, 1e-1, 1e-6
     R = np.diag([R_u, R_v, R_r])
 
     # stage and terminal cost matrices
     W = scipy.linalg.block_diag(Q, R)
-    ocp.cost.W = 100000*W #seems like there are numerical issues if cost coefficients are too small
-    ocp.cost.W_e = 10000*Q
+    ocp.cost.W = W
+    print(W)
+    print(Q)
+    ocp.cost.W_e = Q/10
 
     # set constraints
     u_max = np.array([200, 200, 200])
@@ -68,6 +70,8 @@ def main():
     ocp.solver_options.hessian_approx = 'GAUSS_NEWTON'
     ocp.solver_options.integrator_type = 'ERK'
     ocp.solver_options.nlp_solver_type = 'SQP'
+    ocp.solver_options.nlp_solver_max_iter = 100
+
     ocp.solver_options.qp_solver_cond_N = N_horizon
 
     solver_json = 'acados_ocp_' + model.name + '.json'
