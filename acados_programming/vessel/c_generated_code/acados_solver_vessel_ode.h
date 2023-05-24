@@ -63,7 +63,7 @@
 #define VESSEL_ODE_NY0    9
 #define VESSEL_ODE_NY     9
 #define VESSEL_ODE_NYN    6
-#define VESSEL_ODE_N      20
+#define VESSEL_ODE_N      50
 #define VESSEL_ODE_NH     0
 #define VESSEL_ODE_NPHI   0
 #define VESSEL_ODE_NHN    0

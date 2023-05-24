@@ -140,7 +140,7 @@ void vessel_ode_acados_create_1_set_plan(ocp_nlp_plan_t* nlp_solver_plan, const 
     /************************************************
     *  plan
     ************************************************/
-    nlp_solver_plan->nlp_solver = SQP;
+    nlp_solver_plan->nlp_solver = SQP_RTI;
 
     nlp_solver_plan->ocp_qp_solver_plan.qp_solver = FULL_CONDENSING_QPOASES;
 
@@ -351,7 +351,7 @@ void vessel_ode_acados_create_5_set_nlp_in(vessel_ode_solver_capsule* capsule, c
     if (new_time_steps) {
         vessel_ode_acados_update_time_steps(capsule, N, new_time_steps);
     } else {// all time_steps are identical
-        double time_step = 0.005;
+        double time_step = 0.0002;
         for (int i = 0; i < N; i++)
         {
             ocp_nlp_in_set(nlp_config, nlp_dims, nlp_in, i, "Ts", &time_step);
@@ -370,10 +370,14 @@ void vessel_ode_acados_create_5_set_nlp_in(vessel_ode_solver_capsule* capsule, c
     /**** Cost ****/
     double* yref_0 = calloc(NY0, sizeof(double));
     // change only the non-zero elements:
+    yref_0[0] = -5;
+    yref_0[1] = -5;
     ocp_nlp_cost_model_set(nlp_config, nlp_dims, nlp_in, 0, "yref", yref_0);
     free(yref_0);
     double* yref = calloc(NY, sizeof(double));
     // change only the non-zero elements:
+    yref[0] = -5;
+    yref[1] = -5;
 
     for (int i = 1; i < N; i++)
     {
@@ -382,10 +386,13 @@ void vessel_ode_acados_create_5_set_nlp_in(vessel_ode_solver_capsule* capsule, c
     free(yref);
     double* yref_e = calloc(NYN, sizeof(double));
     // change only the non-zero elements:
+    yref_e[0] = -5;
+    yref_e[1] = -5;
     ocp_nlp_cost_model_set(nlp_config, nlp_dims, nlp_in, N, "yref", yref_e);
     free(yref_e);
    double* W_0 = calloc(NY0*NY0, sizeof(double));
     // change only the non-zero elements:
+<<<<<<< HEAD
     W_0[0+(NY0) * 0] = 100;
     W_0[1+(NY0) * 1] = 100;
     W_0[3+(NY0) * 3] = 10;
@@ -394,10 +401,22 @@ void vessel_ode_acados_create_5_set_nlp_in(vessel_ode_solver_capsule* capsule, c
     W_0[6+(NY0) * 6] = 0.000001;
     W_0[7+(NY0) * 7] = 0.1;
     W_0[8+(NY0) * 8] = 0.000001;
+=======
+    W_0[0+(NY0) * 0] = 10;
+    W_0[1+(NY0) * 1] = 10;
+    W_0[2+(NY0) * 2] = 1;
+    W_0[3+(NY0) * 3] = 1;
+    W_0[4+(NY0) * 4] = 1;
+    W_0[5+(NY0) * 5] = 1;
+    W_0[6+(NY0) * 6] = 0.00000001;
+    W_0[7+(NY0) * 7] = 0.001;
+    W_0[8+(NY0) * 8] = 0.00000001;
+>>>>>>> b208fe8 (asd)
     ocp_nlp_cost_model_set(nlp_config, nlp_dims, nlp_in, 0, "W", W_0);
     free(W_0);
     double* W = calloc(NY*NY, sizeof(double));
     // change only the non-zero elements:
+<<<<<<< HEAD
     W[0+(NY) * 0] = 100;
     W[1+(NY) * 1] = 100;
     W[3+(NY) * 3] = 10;
@@ -406,6 +425,17 @@ void vessel_ode_acados_create_5_set_nlp_in(vessel_ode_solver_capsule* capsule, c
     W[6+(NY) * 6] = 0.000001;
     W[7+(NY) * 7] = 0.1;
     W[8+(NY) * 8] = 0.000001;
+=======
+    W[0+(NY) * 0] = 10;
+    W[1+(NY) * 1] = 10;
+    W[2+(NY) * 2] = 1;
+    W[3+(NY) * 3] = 1;
+    W[4+(NY) * 4] = 1;
+    W[5+(NY) * 5] = 1;
+    W[6+(NY) * 6] = 0.00000001;
+    W[7+(NY) * 7] = 0.001;
+    W[8+(NY) * 8] = 0.00000001;
+>>>>>>> b208fe8 (asd)
 
     for (int i = 1; i < N; i++)
     {
@@ -416,6 +446,10 @@ void vessel_ode_acados_create_5_set_nlp_in(vessel_ode_solver_capsule* capsule, c
     // change only the non-zero elements:
     W_e[0+(NYN) * 0] = 10;
     W_e[1+(NYN) * 1] = 10;
+<<<<<<< HEAD
+=======
+    W_e[2+(NYN) * 2] = 1;
+>>>>>>> b208fe8 (asd)
     W_e[3+(NYN) * 3] = 1;
     W_e[4+(NYN) * 4] = 1;
     W_e[5+(NYN) * 5] = 1;
@@ -495,12 +529,6 @@ void vessel_ode_acados_create_5_set_nlp_in(vessel_ode_solver_capsule* capsule, c
     double* lbx0 = lubx0;
     double* ubx0 = lubx0 + NBX0;
     // change only the non-zero elements:
-    lbx0[0] = 10;
-    ubx0[0] = 10;
-    lbx0[1] = -5;
-    ubx0[1] = -5;
-    lbx0[2] = 1.57;
-    ubx0[2] = 1.57;
 
     ocp_nlp_constraints_model_set(nlp_config, nlp_dims, nlp_in, 0, "idxbx", idxbx0);
     ocp_nlp_constraints_model_set(nlp_config, nlp_dims, nlp_in, 0, "lbx", lbx0);
@@ -530,12 +558,11 @@ void vessel_ode_acados_create_5_set_nlp_in(vessel_ode_solver_capsule* capsule, c
     double* lbu = lubu;
     double* ubu = lubu + NBU;
     
-    lbu[0] = -200;
     ubu[0] = 200;
     lbu[1] = -200;
     ubu[1] = 200;
-    lbu[2] = -200;
-    ubu[2] = 200;
+    lbu[2] = -800;
+    ubu[2] = 400;
 
     for (int i = 0; i < N; i++)
     {
@@ -635,24 +662,6 @@ void vessel_ode_acados_create_6_set_opts(vessel_ode_solver_capsule* capsule)
     ocp_nlp_solver_opts_set(nlp_config, nlp_opts, "ext_qp_res", &nlp_solver_ext_qp_res);
 
 
-    // set SQP specific options
-    double nlp_solver_tol_stat = 0.000001;
-    ocp_nlp_solver_opts_set(nlp_config, nlp_opts, "tol_stat", &nlp_solver_tol_stat);
-
-    double nlp_solver_tol_eq = 0.000001;
-    ocp_nlp_solver_opts_set(nlp_config, nlp_opts, "tol_eq", &nlp_solver_tol_eq);
-
-    double nlp_solver_tol_ineq = 0.000001;
-    ocp_nlp_solver_opts_set(nlp_config, nlp_opts, "tol_ineq", &nlp_solver_tol_ineq);
-
-    double nlp_solver_tol_comp = 0.000001;
-    ocp_nlp_solver_opts_set(nlp_config, nlp_opts, "tol_comp", &nlp_solver_tol_comp);
-
-    int nlp_solver_max_iter = 100;
-    ocp_nlp_solver_opts_set(nlp_config, nlp_opts, "max_iter", &nlp_solver_max_iter);
-
-    int initialize_t_slacks = 0;
-    ocp_nlp_solver_opts_set(nlp_config, nlp_opts, "initialize_t_slacks", &initialize_t_slacks);
 
     int qp_solver_iter_max = 50;
     ocp_nlp_solver_opts_set(nlp_config, nlp_opts, "qp_iter_max", &qp_solver_iter_max);
@@ -680,9 +689,6 @@ void vessel_ode_acados_create_7_set_nlp_out(vessel_ode_solver_capsule* capsule)
 
     // initialize with x0
     
-    x0[0] = 10;
-    x0[1] = -5;
-    x0[2] = 1.57;
 
 
     double* u0 = xu0 + NX;
@@ -944,24 +950,16 @@ void vessel_ode_acados_print_stats(vessel_ode_solver_capsule* capsule)
     if (stat_n > 8)
         printf("\t\tqp_res_stat\tqp_res_eq\tqp_res_ineq\tqp_res_comp");
     printf("\n");
-
+    printf("iter\tqp_stat\tqp_iter\n");
     for (int i = 0; i < nrow; i++)
     {
         for (int j = 0; j < stat_n + 1; j++)
         {
-            if (j == 0 || j == 5 || j == 6)
-            {
-                tmp_int = (int) stat[i + j * nrow];
-                printf("%d\t", tmp_int);
-            }
-            else
-            {
-                printf("%e\t", stat[i + j * nrow]);
-            }
+            tmp_int = (int) stat[i + j * nrow];
+            printf("%d\t", tmp_int);
         }
         printf("\n");
     }
-
 }
 
 int vessel_ode_acados_custom_update(vessel_ode_solver_capsule* capsule, double* data, int data_len)
