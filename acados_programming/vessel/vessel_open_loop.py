@@ -1,8 +1,4 @@
 import os
-
-os.environ['ACADOS_LIB_PATH'] = '/home/edvart/software/acados/lib'
-os.environ['ACADOS_INCLUDE_PATH'] = '/home/edvart/software/acados/include'
-
 from acados_template import AcadosSim, AcadosSimSolver
 from vessel_mpc_model import export_vessel_mpc_model
 import numpy as np
@@ -36,7 +32,7 @@ def main():
 
     simX = np.zeros((N+1, nx)) # create memory for solution
     x0 = np.zeros((nx,)) # initial condition
-    u0 = np.array([1000, 0.0, 500]) # initial control
+    u0 = np.array([2000, 0.0, 250]) # initial control
     U = np.tile(u0, (N,1)) # constant control input
     acados_integrator.set("u", u0)
 

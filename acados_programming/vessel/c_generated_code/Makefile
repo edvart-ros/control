@@ -73,8 +73,8 @@ OBJ+= $(OCP_OBJ)
 EXTERNAL_DIR=
 EXTERNAL_LIB=
 
-INCLUDE_PATH = /home/edvart/software/acados/include
-LIB_PATH = /home/edvart/software/acados/lib
+INCLUDE_PATH = /home/navier/acados/acados/include
+LIB_PATH = /home/navier/acados/acados/lib
 
 # preprocessor flags for make's implicit rules
 CPPFLAGS+= -I$(INCLUDE_PATH)
@@ -135,7 +135,7 @@ ocp_cython_c: ocp_shared_lib
 	-o acados_ocp_solver_pyx.c \
 	-I $(INCLUDE_PATH)/../interfaces/acados_template/acados_template \
 	$(INCLUDE_PATH)/../interfaces/acados_template/acados_template/acados_ocp_solver_pyx.pyx \
-	-I /home/edvart/programming/control/acados_programming/vessel/c_generated_code \
+	-I /home/navier/edvart_programming_remote/control/acados_programming/vessel/c_generated_code \
 
 ocp_cython_o: ocp_cython_c
 	$(CC) $(ACADOS_FLAGS) -c -O2 \
@@ -144,8 +144,8 @@ ocp_cython_o: ocp_cython_c
 	-I $(INCLUDE_PATH)/blasfeo/include/ \
 	-I $(INCLUDE_PATH)/hpipm/include/ \
 	-I $(INCLUDE_PATH) \
-	-I /home/edvart/programming/control/.venv/lib/python3.10/site-packages/numpy/core/include \
-	-I /usr/include/python3.10 \
+	-I /home/navier/edvart_programming_remote/.venv/control/lib/python3.8/site-packages/numpy/core/include \
+	-I /usr/include/python3.8 \
 	acados_ocp_solver_pyx.c \
 
 ocp_cython: ocp_cython_o
@@ -162,7 +162,7 @@ sim_cython_c: sim_shared_lib
 	-o acados_sim_solver_pyx.c \
 	-I $(INCLUDE_PATH)/../interfaces/acados_template/acados_template \
 	$(INCLUDE_PATH)/../interfaces/acados_template/acados_template/acados_sim_solver_pyx.pyx \
-	-I /home/edvart/programming/control/acados_programming/vessel/c_generated_code \
+	-I /home/navier/edvart_programming_remote/control/acados_programming/vessel/c_generated_code \
 
 sim_cython_o: sim_cython_c
 	$(CC) $(ACADOS_FLAGS) -c -O2 \
@@ -171,8 +171,8 @@ sim_cython_o: sim_cython_c
 	-I $(INCLUDE_PATH)/blasfeo/include/ \
 	-I $(INCLUDE_PATH)/hpipm/include/ \
 	-I $(INCLUDE_PATH) \
-	-I /home/edvart/programming/control/.venv/lib/python3.10/site-packages/numpy/core/include \
-	-I /usr/include/python3.10 \
+	-I /home/navier/edvart_programming_remote/.venv/control/lib/python3.8/site-packages/numpy/core/include \
+	-I /usr/include/python3.8 \
 	acados_sim_solver_pyx.c \
 
 sim_cython: sim_cython_o

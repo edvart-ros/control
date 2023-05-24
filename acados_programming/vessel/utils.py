@@ -69,7 +69,10 @@ def plot_vessel(shooting_nodes, u_max, U, X_true, latexify=False, plt_show=True,
         axs[i//2, i%2].set_xlabel('$t$')
         axs[i//2, i%2].hlines(u_max, t[0], t[-1], linestyles='dashed', alpha=0.7)
         axs[i//2, i%2].hlines(-u_max, t[0], t[-1], linestyles='dashed', alpha=0.7)
-        ylim = u_max[0] * 1.2
+        try:
+            ylim = u_max[0] * 1.2
+        except:
+            ylim = u_max * 1.2
         axs[i//2, i%2].set_ylim([-ylim, ylim])
         axs[i//2, i%2].grid()
 
@@ -99,5 +102,6 @@ def plot_vessel(shooting_nodes, u_max, U, X_true, latexify=False, plt_show=True,
 
     # avoid plotting when running on Travis
     if os.environ.get('ACADOS_ON_CI') is None and plt_show:
-        plt.show()
-
+        #plt.show()
+        plt.savefig('vessel_plot.png')
+        return

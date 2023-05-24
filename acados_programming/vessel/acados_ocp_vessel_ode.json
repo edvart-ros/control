@@ -1,7 +1,7 @@
 {
-    "acados_include_path": "/home/edvart/software/acados/include",
-    "acados_lib_path": "/home/edvart/software/acados/lib",
-    "code_export_directory": "/home/edvart/programming/control/acados_programming/vessel/c_generated_code",
+    "acados_include_path": "/home/navier/acados/acados/include",
+    "acados_lib_path": "/home/navier/acados/acados/lib",
+    "code_export_directory": "/home/navier/edvart_programming_remote/control/acados_programming/vessel/c_generated_code",
     "constraints": {
         "C": [],
         "C_e": [],
@@ -694,8 +694,8 @@
         "zu_e": []
     },
     "cython_include_dirs": [
-        "/home/edvart/programming/control/.venv/lib/python3.10/site-packages/numpy/core/include",
-        "/usr/include/python3.10"
+        "/home/navier/edvart_programming_remote/.venv/control/lib/python3.8/site-packages/numpy/core/include",
+        "/usr/include/python3.8"
     ],
     "dims": {
         "N": 20,
