@@ -1,5 +1,7 @@
 numpy
 scipy
 do-mpc
+ipiywidgets
 matplotlib
+cvxpy
 #acados, see acados python interface documentation for installation
