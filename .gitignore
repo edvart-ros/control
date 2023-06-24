@@ -59,3 +59,6 @@ vessel/c_generated_code/*
 
 # ignore all json files
 *.json
+
+.venv/
+.venv/*
